@@ -24,11 +24,15 @@ import { useUserContext } from "@/context/AuthContext";
 const SignupForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
-
+  const { checkAuthUser, } = useUserContext();
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
     useCreateUserAccount();
-  const { mutateAsync: signInAccount, isPending: isSigningIn } =
+
+  // const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+
+  // const { mutateAsync: signInAccount, isPending: isSigningIn } =
+  //   usesignInAccount();
+    const { mutateAsync: signInAccount, } =
     usesignInAccount();
 
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -44,12 +48,14 @@ const SignupForm = () => {
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     const newUser = await createUserAccount(values);
 
+    
     if (!newUser) {
       return;
       toast({
         title: "Signup failed please try again",
       });
     }
+    
 
     const session = await signInAccount({
       email: values.email,
@@ -61,6 +67,7 @@ const SignupForm = () => {
     }
 
     const isLoggedIn = await checkAuthUser();
+    console.log(isLoggedIn,'ahsan')
 
     if (isLoggedIn) {
       form.reset();
@@ -69,6 +76,10 @@ const SignupForm = () => {
     } else {
       toast({ title: "Sign up failed. please try again " });
     }
+
+    
+ 
+
   }
 
   return (

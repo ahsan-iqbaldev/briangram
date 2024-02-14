@@ -6,6 +6,8 @@ import { Home, Explore, Saved, AllUsers, CreatePost, EditPost, PostDetails, Prof
 import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./root/RootLayout";
 import { Toaster } from "@/components/ui/toaster";
+import Reels from "./root/pages/Reels";
+import Chats from "./root/pages/Chats";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/saved" element={<Saved />} />
+          <Route path="/reels" element={<Reels />} />
+          <Route path="/chats" element={<Chats />} />
           <Route path="/all-users" element={<AllUsers />} />
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:id" element={<EditPost />} />

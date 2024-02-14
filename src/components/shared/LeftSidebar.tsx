@@ -1,7 +1,6 @@
 import {
   Link,
   NavLink,
-  Navigate,
   useLocation,
   useNavigate,
 } from "react-router-dom";
@@ -23,7 +22,7 @@ const LeftSidebar = () => {
   }, [isSuccess]);
   return (
     <nav className="leftsidebar">
-      <div className="flex flex-col gap-11">
+      <div className="flex flex-col gap-8">
         <Link to="/" className="flex gap-3 items-center">
           <img
             src="/assets/images/logo.svg"
@@ -44,7 +43,7 @@ const LeftSidebar = () => {
           </div>
         </Link>
 
-        <ul className="flex flex-col gap-6">
+        <ul className="flex flex-col gap-4">
           {sidebarLinks.map((link: INavLink, index) => {
             const isActive = pathname === link.route;
             return (
